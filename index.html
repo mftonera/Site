@@ -1,90 +1,434 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina | Next-Gen Digital Solutions</title>
-    <meta name="description" content="Lumina provides premium digital solutions, cutting-edge web development, and digital transformation services for modern businesses.">
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
+<!-- Declaração do tipo de documento, informando ao navegador que se trata de um documento HTML5 -->
+<html lang="pt-BR">
+<!-- Início do documento HTML, com a definição do idioma como Português do Brasil -->
 
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <a href="#" class="logo">Lumina<span>.</span></a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-            <a href="#contact" class="btn btn-primary">Get Started</a>
-        </nav>
+<head>
+    <!-- Seção head: contém metadados, links para fontes e folhas de estilo, que não são exibidos diretamente na página -->
+    <meta charset="UTF-8">
+    <!-- Define a codificação de caracteres como UTF-8, que suporta a maioria dos caracteres e símbolos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configura a viewport para tornar o site responsivo (ajustável a diferentes tamanhos de tela) -->
+    <title>SINC - Empresa Junior</title>
+    <!-- Define o título da página que aparece na aba do navegador -->
+    <meta name="description"
+        content="SINC: Inovação e Gestão Corporativa. Oferecemos soluções para o sucesso da sua empresa.">
+    <!-- Meta description: fornece um resumo do conteúdo da página para os motores de busca (SEO) -->
+
+    <!-- Preconexões para acelerar o carregamento das fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Importação das fontes Inter e Outfit do Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Vincula o arquivo CSS externo (style.css) para aplicar estilos à página -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- O corpo do documento, onde fica o conteúdo visível para o usuário -->
+
+    <header class="navbar">
+        <!-- Cabeçalho da página, contendo a barra de navegação principal -->
+        <div class="nav-container">
+            <!-- Container flexível para alinhar o logotipo e os links de navegação -->
+            <a href="#" class="logo-container">
+                <!-- Link que envolve o logotipo, redirecionando para o topo da página -->
+                <img src="assets/icone.png" alt="Logo SINC" class="logo-img">
+                <!-- Imagem do logotipo do site -->
+                <span class="logo-text">SINC</span>
+                <!-- Texto do logotipo ao lado da imagem -->
+            </a>
+            <nav class="nav-links">
+                <!-- Seção de links de navegação do site -->
+                <a href="#home">Início</a>
+                <!-- Link para a seção Home -->
+                <a href="#about">Sobre</a>
+                <!-- Link para a seção Sobre -->
+                <a href="#services">Serviços</a>
+                <!-- Link para a seção Serviços -->
+                <a href="#members">Membros</a>
+                <!-- Link para a seção Membros -->
+                <a href="#contact" class="btn-primary-outline">Contato</a>
+
+                <!-- Link para a seção de Contato com estilo de botão delineado -->
+                <a href="dashboard.html" class="btn-primary" style="margin-left: 10px;">Entrar</a>
+                <!-- Link para a nova página de Login/Dashboard -->
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <!-- Botão de menu "hambúrguer" visível apenas em telas menores (dispositivos móveis) -->
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <!-- Barras que formam o ícone do menu responsivo -->
+            </div>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg-glow"></div>
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>Elevate Your Digital Presence</h1>
-                <p>We craft stunning, high-performance digital experiences that drive growth and set your business apart in the modern landscape.</p>
-                <div class="hero-buttons">
-                    <a href="#services" class="btn btn-primary">Explore Services</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+    <main>
+        <!-- Conteúdo principal da página -->
+
+        <section id="home" class="hero">
+            <!-- Seção "Hero" (destaque principal no topo da página) -->
+            <div class="hero-overlay"></div>
+            <!-- Camada de sobreposição (geralmente escura) para melhorar a leitura do texto sobre a imagem de fundo -->
+            <div class="hero-content">
+                <!-- Container para o conteúdo textual do destaque -->
+                <h1 class="fade-in">O Futuro da Gestão <span>Empresarial</span></h1>
+                <!-- Título principal da página com animação de fade in -->
+                <p class="fade-in delay-1">Soluções tecnológicas e estratégicas para impulsionar o seu negócio
+                    no mercado competitivo.</p>
+                <!-- Subtítulo ou descrição com pequeno atraso na animação -->
+                <div class="hero-buttons fade-in delay-2">
+                    <!-- Container para os botões de ação na área hero -->
+                    <a href="#services" class="btn-primary">Nossos Serviços</a>
+                    <!-- Botão de ação principal redirecionando para a seção de Serviços -->
+                    <a href="#about" class="btn-secondary">Conheça a SINC</a>
+                    <!-- Botão secundário redirecionando para a seção Sobre -->
                 </div>
             </div>
-            <div class="hero-image-wrapper">
-                <img src="hero_abstract_shape.png" alt="Abstract 3D Shape representing digital innovation" class="hero-image" id="dynamic-hero-img">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Our Expertise</h2>
-            <div class="services-grid">
-                
-                <div class="service-card">
-                    <div class="service-icon">✨</div>
-                    <h3>UI/UX Design</h3>
-                    <p>We design intuitive, engaging user interfaces that captivate your audience and deliver seamless experiences.</p>
+        <section id="about" class="about-section section-padding">
+            <!-- Seção "Sobre nós", contendo informações da empresa -->
+            <div class="container">
+                <!-- Container para limitar a largura do conteúdo e centralizá-lo -->
+                <div class="section-title">
+                    <!-- Container do título da seção -->
+                    <h2>Sobre a SINC</h2>
+                    <!-- Título da seção -->
+                    <div class="divider"></div>
+                    <!-- Linha divisória para efeito estético -->
+                </div>
+                <div class="about-grid">
+                    <!-- Grade de layout para dividir o conteúdo sobre a empresa em colunas -->
+                    <div class="about-text slide-up">
+                        <!-- Coluna de texto com animação de deslizar para cima -->
+                        <h3>Inovação em cada processo</h3>
+                        <!-- Título do bloco de texto -->
+                        <p>A SINC nasceu com o propósito de redefinir a gestão corporativa. Combinamos tecnologias com
+                            design centrado no usuário para oferecer plataformas que conectam equipes,
+                            simplificam tarefas e escalam resultados.</p>
+                        <!-- Parágrafo introdutório -->
+                        <p>Nossa equipe trabalha para construir um ecossistema digital onde a sua empresa pode prosperar
+                            sem limites.</p>
+                        <!-- Segundo parágrafo detalhando o propósito da equipe -->
+                        <ul class="features-list">
+                            <!-- Lista de características/vantagens -->
+                            <li>Gestão Eficiente</li>
+                            <li>Tecnologia Escalável</li>
+                            <li>Design Premium</li>
+                            <!-- Itens da lista -->
+                        </ul>
+                    </div>
+                    <div class="about-image slide-up delay-1">
+                        <!-- Coluna para a imagem/mockup com animação -->
+                        <div class="glass-card mockup-card">
+                            <!-- Cartão com efeito visual "glassmorphism" simulando a interface de um sistema -->
+                            <div class="mockup-header">
+                                <!-- Cabeçalho do mockup, parecendo a barra superior de uma janela do macOS -->
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <!-- Bolinhas decorativas simulando os botões de fechar, minimizar e maximizar -->
+                            </div>
+                            <div class="mockup-body">
+                                <!-- Corpo do mockup simulando uma dashboard -->
+                                <h4>Dashboard SINC</h4>
+                                <!-- Título dentro do mockup -->
+                                <div class="mockup-line"></div>
+                                <!-- Linha gráfica representando um elemento da interface -->
+                                <div class="mockup-line short"></div>
+                                <!-- Outra linha, mais curta -->
+                                <div class="mockup-stats">
+                                    <!-- Container para estatísticas/gráficos do mockup -->
+                                    <div class="stat-box"></div>
+                                    <!-- Caixa representando um dado estatístico -->
+                                    <div class="stat-box highlight"></div>
+                                    <!-- Caixa destacada representando outro dado -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services-section section-padding">
+            <!-- Seção de "Serviços", apresentando o que a empresa oferece -->
+            <div class="container">
+                <!-- Container principal da seção -->
+                <div class="section-title text-center">
+                    <!-- Título da seção centralizado -->
+                    <h2>Nossos Serviços</h2>
+                    <!-- Título -->
+                    <div class="divider mx-auto"></div>
+                    <!-- Divisor centralizado (margem horizontal automática) -->
+                    <p class="section-subtitle">Soluções completas para transformar o seu negócio</p>
+                    <!-- Subtítulo explicativo dos serviços -->
+                </div>
+                <div class="services-grid">
+                    <!-- Grade para organizar os cards de serviço lado a lado -->
+                    <div class="service-card slide-up">
+                        <!-- Primeiro cartão de serviço, com animação -->
+                        <div class="service-icon">✦</div>
+                        <!-- Ícone do serviço -->
+                        <h3>Consultoria Estratégica</h3>
+                        <!-- Título do serviço -->
+                        <p>Análise profunda do seu negócio para identificar oportunidades de crescimento e otimização de
+                            recursos.</p>
+                        <!-- Descrição detalhada do serviço -->
+                    </div>
+                    <div class="service-card slide-up delay-1">
+                        <!-- Segundo cartão de serviço -->
+                        <div class="service-icon">✧</div>
+                        <!-- Ícone -->
+                        <h3>Desenvolvimento de Software</h3>
+                        <!-- Título -->
+                        <p>Sistemas sob medida, rápidos e escaláveis, desenvolvidos com as tecnologias mais recentes do
+                            mercado.</p>
+                        <!-- Descrição -->
+                    </div>
+                    <div class="service-card slide-up delay-2">
+                        <!-- Terceiro cartão de serviço -->
+                        <div class="service-icon">⟡</div>
+                        <!-- Ícone -->
+                        <h3>Gestão de Equipes</h3>
+                        <!-- Título -->
+                        <p>Ferramentas exclusivas para gerenciamento de diretórios, calendários e tarefas da sua
+                            corporação.</p>
+                        <!-- Descrição -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="members" class="members-section section-padding">
+            <!-- Seção de "Membros", apresentando a equipe -->
+            <div class="container">
+                <div class="section-title text-center">
+                    <h2>Nossa Equipe</h2>
+                    <div class="divider mx-auto"></div>
+                    <p class="section-subtitle">Conheça os talentos por trás da SINC</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
-                    <h3>Web Development</h3>
-                    <p>Robust, scalable, and lightning-fast web applications built with the latest technologies to power your business.</p>
+                <div class="members-grid">
+                    <!-- Member Card 1 -->
+                    <div class="member-card slide-up">
+                        <div class="member-photo-container">
+                            <img src="assets/matheus.png" alt="Matheus Tonera" class="member-img">
+                        </div>
+
+                        <div class="member-info">
+                            <h3>Matheus Tonera</h3>
+                            <p class="member-role">Diretor de Marketing</p>
+                            <div class="member-social">
+                                <span class="social-tag">SINC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member Card 2 -->
+                    <div class="member-card slide-up delay-1">
+                        <div class="member-photo-container">
+                            <img src="assets/mariaeduarda.png" alt="Maria Eduarda" class="member-img">
+                        </div>
+
+                        <div class="member-info">
+                            <h3>Maria Eduarda</h3>
+                            <p class="member-role">Diretora de RH</p>
+                            <div class="member-social">
+                                <span class="social-tag">SINC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member Card 3 -->
+                    <div class="member-card slide-up delay-2">
+                        <div class="member-photo-container">
+                            <div class="member-photo-placeholder">
+                                <span>FT</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Lucas Zilio</h3>
+                            <p class="member-role">Diretor de Projetos</p>
+                            <div class="member-social">
+                                <span class="social-tag">SINC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member Card 4 -->
+                    <div class="member-card slide-up delay-3">
+                        <div class="member-photo-container">
+                            <div class="member-photo-placeholder">
+                                <span>FT</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Lucas Weiss</h3>
+                            <p class="member-role">Administrador Financeiro</p>
+                            <div class="member-social">
+                                <span class="social-tag">SINC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member Card 5 -->
+                    <div class="member-card slide-up">
+                        <div class="member-photo-container">
+                            <div class="member-photo-placeholder">
+                                <span>FT</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Gustavo</h3>
+                            <p class="member-role">Consultor</p>
+                            <div class="member-social">
+                                <span class="social-tag">SINC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member Card 6 -->
+                    <div class="member-card slide-up delay-1">
+                        <div class="member-photo-container">
+                            <div class="member-photo-placeholder">
+                                <span>FT</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Bruno Barcelos</h3>
+                            <p class="member-role">Diretor do Comercial</p>
+                            <div class="member-social">
+                                <span class="social-tag">SINC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member Card 7 -->
+                    <div class="member-card slide-up delay-2">
+                        <div class="member-photo-container">
+                            <div class="member-photo-placeholder">
+                                <span>FT</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Vinícius Wesner</h3>
+                            <p class="member-role">Consultor</p>
+                            <div class="member-social">
+                                <span class="social-tag">SINC</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member Card 8 -->
+                    <div class="member-card slide-up delay-3">
+                        <div class="member-photo-container">
+                            <div class="member-photo-placeholder">
+                                <span>FT</span>
+                            </div>
+                        </div>
+                        <div class="member-info">
+                            <h3>Pedro Foletto</h3>
+                            <p class="member-role">Consultor</p>
+                            <div class="member-social">
+                                <span class="social-tag">SINC</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">🚀</div>
-                    <h3>Digital Strategy</h3>
-                    <p>Data-driven strategies that accelerate your growth, optimize conversions, and maximize your online potential.</p>
+
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section section-padding">
+
+            <!-- Seção de "Contato", para usuários enviarem mensagens -->
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Grade que divide as informações de contato do formulário -->
+                    <div class="contact-info slide-up">
+                        <!-- Coluna com informações de contato por extenso -->
+                        <h2>Pronto para inovar?</h2>
+                        <!-- Título motivacional de contato -->
+                        <p>Entre em contato conosco e descubra como a SINC pode elevar o patamar da sua empresa.</p>
+                        <!-- Texto incentivando o contato -->
+                        <div class="info-item">
+                            <!-- Informação específica: E-mail -->
+                            <strong>Email:</strong> marketing@sincjr.com.br
+                        </div>
+
+                        <div class="info-item">
+                            <!-- Informação específica: Telefone -->
+                            <strong>Telefone:</strong> +55 (51) 99999-9999
+                        </div>
+                    </div>
+                    <form class="contact-form slide-up delay-1" id="contactForm"
+                        action="https://formsubmit.co/marketing@sincjr.com.br" method="POST">
+                        <!-- Coluna contendo o formulário de contato -->
+                        <div class="form-group">
+                            <!-- Grupo para o campo de Nome -->
+                            <label for="name">Nome Completo</label>
+                            <!-- Rótulo do campo de nome -->
+                            <input type="text" id="name" name="name" required placeholder="Seu nome">
+                            <!-- Campo de entrada de texto obrigatório para o nome -->
+                        </div>
+                        <div class="form-group">
+                            <!-- Grupo para o campo de E-mail -->
+                            <label for="email">E-mail Corporativo</label>
+                            <!-- Rótulo do e-mail -->
+                            <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                            <!-- Campo de entrada obrigatório validado como e-mail -->
+                        </div>
+                        <div class="form-group">
+                            <!-- Grupo para a Mensagem -->
+                            <label for="message">Mensagem</label>
+                            <!-- Rótulo da mensagem -->
+                            <textarea id="message" name="message" rows="4" required
+                                placeholder="Como podemos ajudar?"></textarea>
+                            <!-- Área de texto longa obrigatória para o usuário digitar a mensagem -->
+                        </div>
+
+                        <button type="submit" class="btn-primary w-100">Enviar Mensagem</button>
+                        <!-- Botão de submissão do formulário, ocupando 100% da largura (w-100) -->
+                    </form>
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- CTA Section -->
-    <section id="contact" class="cta-section">
-        <div class="container">
-            <div class="cta-box">
-                <h2>Ready to transform your business?</h2>
-                <p>Let's collaborate to build something extraordinary. Get in touch with our team of experts today.</p>
-                <a href="mailto:hello@lumina.example.com" class="btn btn-primary">Start a Project</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
+        <!-- Rodapé do site -->
         <div class="container">
-            <p>&copy; 2026 Lumina Digital. All rights reserved.</p>
+            <div class="footer-content">
+                <!-- Conteúdo superior do rodapé, geralmente links e logo -->
+                <div class="footer-brand">
+                    <!-- Branding no rodapé (Logotipo textual e descrição) -->
+                    <span class="logo-text">SINC</span>
+                    <p>Excelência em soluções corporativas.</p>
+                </div>
+                <div class="footer-links">
+                    <!-- Links rápidos de navegação repetidos no rodapé -->
+                    <a href="#home">Início</a>
+                    <a href="#about">Sobre</a>
+                    <a href="#services">Serviços</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <!-- Seção mais inferior do rodapé, contendo direitos autorais -->
+                <p>&copy; 2026 SINCJR. Todos os direitos reservados.</p>
+                <!-- Texto de copyright da empresa -->
+            </div>
         </div>
     </footer>
 
+    <!-- Inclusão do arquivo JavaScript principal que contém as interações dinâmicas e lógica da página -->
+    <script src="main.js"></script>
 </body>
+
 </html>
