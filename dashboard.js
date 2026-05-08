@@ -1,7 +1,7 @@
 function decodeJwtResponse(token) {
     let base64Url = token.split('.')[1];
     let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    let jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+    let jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
@@ -11,24 +11,24 @@ function decodeJwtResponse(token) {
 function handleCredentialResponse(response) {
     const loginError = document.getElementById('login-error');
     const responsePayload = decodeJwtResponse(response.credential);
-    
+
     // Verificando se o email pertence ao domínio @sincjr.com.br
     // O Google Workspace geralmente inclui a claim 'hd' (Hosted Domain)
     if (responsePayload.hd === 'sincjr.com.br' || responsePayload.email.endsWith('@sincjr.com.br')) {
         loginError.style.display = 'none';
-        
+
         // Salva no localStorage para manter o login permanentemente (até que saia)
         localStorage.setItem('sincUser', JSON.stringify({
             name: responsePayload.name,
             email: responsePayload.email
         }));
-        
+
         showDashboard(responsePayload.name);
     } else {
         // Acesso Negado
         loginError.style.display = 'block';
         loginError.textContent = "Acesso negado. Utilize seu e-mail @sincjr.com.br";
-        
+
         // Desconecta o usuário do app caso ele tenha logado com conta pessoal
         google.accounts.id.revoke(responsePayload.email, done => {
             console.log('Acesso revogado para conta não autorizada');
@@ -40,9 +40,9 @@ function showDashboard(userName, instant = false) {
     const loginOverlay = document.getElementById('login-overlay');
     const dashboardContent = document.getElementById('dashboard-content');
     const userNameSpan = document.getElementById('user-name');
-    
+
     userNameSpan.textContent = userName;
-    
+
     if (instant) {
         loginOverlay.style.display = 'none';
         dashboardContent.style.display = 'block';
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof google !== 'undefined') {
             google.accounts.id.renderButton(
                 document.getElementById("google-login-btn"),
-                { theme: "filled_black", size: "large", type: "standard", shape: "rectangular", text: "continue_with" } 
+                { theme: "filled_black", size: "large", type: "standard", shape: "rectangular", text: "continue_with" }
             );
         }
     }
@@ -99,13 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('sincUser');
         localStorage.removeItem('sincDriveToken');
         google.accounts.id.disableAutoSelect();
-        
+
         const authDriveBtn = document.getElementById('auth-drive-btn');
         if (authDriveBtn) authDriveBtn.style.display = 'inline-block';
 
         dashboardContent.style.display = 'none';
         loginOverlay.style.display = 'flex';
-        
+
         setTimeout(() => {
             loginOverlay.classList.remove('hidden');
         }, 10);
@@ -114,10 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
         widgets.forEach(widget => {
             widget.classList.remove('visible');
         });
-        
+
         // Re-renderiza o botão do Google caso ele tenha sumido
         if (typeof google !== 'undefined' && document.getElementById("google-login-btn").innerHTML === "") {
-             google.accounts.id.renderButton(
+            google.accounts.id.renderButton(
                 document.getElementById("google-login-btn"),
                 { theme: "filled_black", size: "large", type: "standard", shape: "rectangular", text: "continue_with" }
             );
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const authDriveBtn = document.getElementById('auth-drive-btn');
     const backBtn = document.getElementById('drive-back-btn');
-    
+
     if (authDriveBtn) {
         // Inicializa o Token Client
         const tokenClient = google.accounts.oauth2.initTokenClient({
@@ -141,19 +141,18 @@ document.addEventListener('DOMContentLoaded', () => {
             callback: (tokenResponse) => {
                 if (tokenResponse && tokenResponse.access_token) {
                     currentAccessToken = tokenResponse.access_token;
-                    
+
                     // Salva o token no localStorage com tempo de expiração
                     const expiresAt = Date.now() + (tokenResponse.expires_in * 1000);
                     localStorage.setItem('sincDriveToken', JSON.stringify({
                         token: currentAccessToken,
                         expiresAt: expiresAt
                     }));
-                    
+
                     authDriveBtn.style.display = 'none'; // Esconde o botão após sincronizar
                     folderHistory = []; // Reseta o histórico
                     currentFolderId = rootFolderId;
                     fetchDriveFiles(currentAccessToken, rootFolderId);
-                    fetchUserHours(currentAccessToken);
                 }
             },
         });
@@ -167,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentAccessToken = storedToken.token;
                 authDriveBtn.style.display = 'none'; // Já está sincronizado
                 fetchDriveFiles(currentAccessToken, rootFolderId);
-                fetchUserHours(currentAccessToken);
             }
         }
 
@@ -178,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const user = JSON.parse(storedUser);
                 hint = user.email;
             }
-            tokenClient.requestAccessToken({hint: hint});
+            tokenClient.requestAccessToken({ hint: hint });
         });
     }
 
@@ -194,14 +192,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modal de Preview
     const previewModal = document.getElementById('file-preview-modal');
     const closeModalBtn = document.getElementById('close-modal-btn');
-    
+
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', () => {
             previewModal.style.display = 'none';
             document.getElementById('file-preview-iframe').src = ''; // Para o carregamento
         });
     }
-    
+
     // Fecha o modal ao clicar fora
     window.addEventListener('click', (e) => {
         if (e.target === previewModal) {
@@ -209,103 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('file-preview-iframe').src = '';
         }
     });
-
-    // Função de busca das Horas no Google Sheets
-    function fetchUserHours(accessToken) {
-        const container = document.getElementById('hours-container');
-        const status = document.getElementById('hours-status');
-        
-        // RECUPERA O NOME DO USUÁRIO LOGADO
-        const storedUser = localStorage.getItem('sincUser');
-        if (!storedUser) return;
-        const userName = JSON.parse(storedUser).name;
-
-        // ID real fornecido pelo usuário
-        const SPREADSHEET_ID = '1cJxP2gAjh94WthoNOPVzWhQ-OESwCH7k67aDqnLtfS0'; 
-        const SHEET_RANGE = 'A:F'; // Pega as colunas A até F da primeira aba (Geral)
-
-        fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_RANGE}`, {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                status.textContent = "Erro na Planilha";
-                container.innerHTML = `<p class="text-muted" style="color: #ff5f56; font-size:0.9rem;">Acesse o Google Cloud Console e ative a "Google Sheets API".</p>`;
-                return;
-            }
-
-            status.textContent = "Sincronizado";
-            const rows = data.values;
-            if (!rows || rows.length === 0) {
-                container.innerHTML = `<p class="text-muted">Nenhum dado encontrado na planilha.</p>`;
-                return;
-            }
-
-            // Procura o NOME do usuário na planilha (Coluna A = Nome, Coluna D = Horas, Coluna F = Meta %)
-            let userHours = "00:00:00";
-            let userPercentageStr = "0%";
-            let found = false;
-
-            for (let i = 0; i < rows.length; i++) {
-                const rowName = rows[i][0]; // Coluna A (Membro)
-                if (rowName) {
-                    // Limpa e formata para comparar ignorando maiúsculas/minúsculas e espaços extras
-                    const cleanRowName = rowName.toLowerCase().trim();
-                    const cleanUserName = userName.toLowerCase().trim();
-                    
-                    // Compara se os nomes batem ou se um contém o outro (ex: "Matheus Tonera" vs "Matheus F. Tonera")
-                    if (cleanRowName === cleanUserName || cleanUserName.includes(cleanRowName)) {
-                        userHours = rows[i][3] || "00:00:00"; // Coluna D (Horas)
-                        userPercentageStr = rows[i][5] || "0%"; // Coluna F (Meta %)
-                        found = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!found) {
-                container.innerHTML = `
-                    <div style="font-size: 3rem; color: var(--color-text-muted); margin-bottom: 10px;">--</div>
-                    <p class="text-muted">Seu nome (${userName}) não foi localizado na planilha Geral.</p>
-                `;
-            } else {
-                // UI Premium para as Horas com Progresso Dinâmico
-                // Transforma "30,00%" em número 30
-                let percentageNum = parseFloat(userPercentageStr.replace('%', '').replace(',', '.'));
-                if (isNaN(percentageNum)) percentageNum = 0;
-                if (percentageNum > 100) percentageNum = 100;
-
-                // Calcula o offset do círculo SVG (Circunferência é 283)
-                const offset = 283 - (283 * (percentageNum / 100));
-                
-                // Formata as horas para exibir bonitinho (ex: 9:00:00 -> 9h)
-                let displayHours = userHours.split(':')[0] + 'h';
-                if (userHours.split(':')[1] !== "00") displayHours += userHours.split(':')[1] + 'm';
-
-                container.innerHTML = `
-                    <div style="position: relative; display: inline-block; margin-bottom: 1rem;">
-                        <svg width="150" height="150" viewBox="0 0 100 100" style="transform: rotate(-90deg);">
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"></circle>
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="var(--color-primary)" stroke-width="8" stroke-dasharray="283" stroke-dashoffset="${offset}" style="transition: stroke-dashoffset 1.5s ease-out;"></circle>
-                        </svg>
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                            <span style="font-size: 1.8rem; font-weight: bold; color: var(--color-text);">${displayHours}</span>
-                            <span style="display: block; font-size: 0.75rem; color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;">${userPercentageStr} da Meta</span>
-                        </div>
-                    </div>
-                    <p style="color: var(--color-text-muted); font-size: 0.9rem;">Horas computadas</p>
-                `;
-            }
-        })
-        .catch(error => {
-            status.textContent = "Falha";
-            container.innerHTML = `<p class="text-center" style="color: #ff5f56;">Falha de conexão com o Google Sheets.</p>`;
-            console.error("Sheets Error:", error);
-        });
-    }
 
     // Função de busca e renderização (disponível globalmente para ser chamada recursivamente)
     function fetchDriveFiles(accessToken, targetFolderId, isBack = false) {
@@ -329,45 +230,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                container.innerHTML = `<p class="text-center" style="color: #ff5f56;">Erro: ${data.error.message}</p>`;
-                return;
-            }
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    container.innerHTML = `<p class="text-center" style="color: #ff5f56;">Erro: ${data.error.message}</p>`;
+                    return;
+                }
 
-            const files = data.files;
-            if (!files || files.length === 0) {
-                container.innerHTML = '<p class="text-center text-muted">A pasta está vazia.</p>';
-                return;
-            }
+                const files = data.files;
+                if (!files || files.length === 0) {
+                    container.innerHTML = '<p class="text-center text-muted">A pasta está vazia.</p>';
+                    return;
+                }
 
-            container.innerHTML = '';
-            files.forEach(file => {
-                const item = document.createElement('a');
-                item.href = '#';
-                item.className = 'drive-file-item slide-up visible'; 
-                
-                const isFolder = file.mimeType.includes('folder');
-                let strokeColor = isFolder ? 'var(--color-primary)' : 'currentColor';
-                
-                // Ícone genérico de documento
-                let svgPath = `
+                container.innerHTML = '';
+                files.forEach(file => {
+                    const item = document.createElement('a');
+                    item.href = '#';
+                    item.className = 'drive-file-item slide-up visible';
+
+                    const isFolder = file.mimeType.includes('folder');
+                    let strokeColor = isFolder ? 'var(--color-primary)' : 'currentColor';
+
+                    // Ícone genérico de documento
+                    let svgPath = `
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                     <line x1="16" y1="13" x2="8" y2="13"></line>
                     <line x1="16" y1="17" x2="8" y2="17"></line>
                     <polyline points="10 9 9 9 8 9"></polyline>
                 `;
-                
-                // Muda para ícone de pasta se for pasta
-                if (isFolder) {
-                    svgPath = `
+
+                    // Muda para ícone de pasta se for pasta
+                    if (isFolder) {
+                        svgPath = `
                         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                     `;
-                }
-                
-                item.innerHTML = `
+                    }
+
+                    item.innerHTML = `
                     <div class="file-icon" style="color: ${strokeColor}">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             ${svgPath}
@@ -376,27 +277,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="file-name" title="${file.name}">${file.name}</div>
                 `;
 
-                item.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (isFolder) {
-                        fetchDriveFiles(accessToken, file.id);
-                    } else {
-                        const previewModal = document.getElementById('file-preview-modal');
-                        const iframe = document.getElementById('file-preview-iframe');
-                        const modalTitle = document.getElementById('modal-file-title');
-                        
-                        modalTitle.textContent = file.name;
-                        iframe.src = `https://drive.google.com/file/d/${file.id}/preview`;
-                        previewModal.style.display = 'flex';
-                    }
-                });
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (isFolder) {
+                            fetchDriveFiles(accessToken, file.id);
+                        } else {
+                            const previewModal = document.getElementById('file-preview-modal');
+                            const iframe = document.getElementById('file-preview-iframe');
+                            const modalTitle = document.getElementById('modal-file-title');
 
-                container.appendChild(item);
+                            modalTitle.textContent = file.name;
+                            iframe.src = `https://drive.google.com/file/d/${file.id}/preview`;
+                            previewModal.style.display = 'flex';
+                        }
+                    });
+
+                    container.appendChild(item);
+                });
+            })
+            .catch(error => {
+                container.innerHTML = '<p class="text-center" style="color: #ff5f56;">Falha de conexão com a API do Google Drive.</p>';
+                console.error(error);
             });
-        })
-        .catch(error => {
-            container.innerHTML = '<p class="text-center" style="color: #ff5f56;">Falha de conexão com a API do Google Drive.</p>';
-            console.error(error);
-        });
     }
 });
