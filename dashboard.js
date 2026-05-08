@@ -36,23 +36,34 @@ function handleCredentialResponse(response) {
     }
 }
 
-function showDashboard(userName) {
+function showDashboard(userName, instant = false) {
     const loginOverlay = document.getElementById('login-overlay');
     const dashboardContent = document.getElementById('dashboard-content');
     const userNameSpan = document.getElementById('user-name');
     
     userNameSpan.textContent = userName;
     
-    loginOverlay.classList.add('hidden');
-    setTimeout(() => {
+    if (instant) {
         loginOverlay.style.display = 'none';
         dashboardContent.style.display = 'block';
-
         const widgets = document.querySelectorAll('.slide-up');
         widgets.forEach(widget => {
             widget.classList.add('visible');
+            // Remove transition delay for instant load
+            widget.style.transitionDelay = '0s';
         });
-    }, 500);
+    } else {
+        loginOverlay.classList.add('hidden');
+        setTimeout(() => {
+            loginOverlay.style.display = 'none';
+            dashboardContent.style.display = 'block';
+
+            const widgets = document.querySelectorAll('.slide-up');
+            widgets.forEach(widget => {
+                widget.classList.add('visible');
+            });
+        }, 500);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -60,22 +71,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashboardContent = document.getElementById('dashboard-content');
     const logoutBtn = document.getElementById('logout-btn');
 
-    // Verifica se já existe um usuário na sessão (Logado)
-    const storedUser = localStorage.getItem('sincUser');
-    if (storedUser) {
-        const user = JSON.parse(storedUser);
-        showDashboard(user.name);
-    } else {
-        // Inicializa o Google Sign-In
+    // Inicializa o Google Sign-In independentemente de estar logado na sessão ou não
+    // Isso evita o erro "Missing required parameter: client_id" ao deslogar e tentar relogar
+    if (typeof google !== 'undefined') {
         google.accounts.id.initialize({
             client_id: "269603322713-gp2fcbgpbi0ls37gj07lia99odn3l457.apps.googleusercontent.com",
             callback: handleCredentialResponse
         });
-        
-        google.accounts.id.renderButton(
-            document.getElementById("google-login-btn"),
-            { theme: "filled_black", size: "large", type: "standard", shape: "rectangular", text: "continue_with" } 
-        );
+    }
+
+    // Verifica se já existe um usuário na sessão (Logado)
+    const storedUser = localStorage.getItem('sincUser');
+    if (storedUser) {
+        const user = JSON.parse(storedUser);
+        showDashboard(user.name, true); // Use instant=true here
+    } else {
+        if (typeof google !== 'undefined') {
+            google.accounts.id.renderButton(
+                document.getElementById("google-login-btn"),
+                { theme: "filled_black", size: "large", type: "standard", shape: "rectangular", text: "continue_with" } 
+            );
+        }
     }
 
     // Botão de Sair (Logout)
