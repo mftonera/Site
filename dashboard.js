@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     authDriveBtn.style.display = 'none'; // Esconde o botão após sincronizar
                     folderHistory = []; // Reseta o histórico
                     currentFolderId = rootFolderId;
-                    window.fetchDriveFiles(currentAccessToken, rootFolderId);
+                    fetchDriveFiles(currentAccessToken, rootFolderId);
                 }
             },
         });
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (storedToken.expiresAt > Date.now() + 60000) { // 1 minuto de margem
                 currentAccessToken = storedToken.token;
                 authDriveBtn.style.display = 'none'; // Já está sincronizado
-                window.fetchDriveFiles(currentAccessToken, rootFolderId);
+                fetchDriveFiles(currentAccessToken, rootFolderId);
             }
         }
 
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         backBtn.addEventListener('click', () => {
             if (folderHistory.length > 0) {
                 const prevFolderId = folderHistory.pop();
-                window.fetchDriveFiles(currentAccessToken, prevFolderId, true);
+                fetchDriveFiles(currentAccessToken, prevFolderId, true);
             }
         });
     }
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Função de busca e renderização (disponível globalmente para ser chamada recursivamente)
-    window.fetchDriveFiles = function(accessToken, targetFolderId, isBack = false) {
+    function fetchDriveFiles(accessToken, targetFolderId, isBack = false) {
         const container = document.getElementById('drive-files-container');
         const backBtn = document.getElementById('drive-back-btn');
         container.innerHTML = '<p class="text-center text-muted">Carregando arquivos...</p>';
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     if (isFolder) {
-                        window.fetchDriveFiles(accessToken, file.id);
+                        fetchDriveFiles(accessToken, file.id);
                     } else {
                         const previewModal = document.getElementById('file-preview-modal');
                         const iframe = document.getElementById('file-preview-iframe');
@@ -299,5 +299,5 @@ document.addEventListener('DOMContentLoaded', () => {
             container.innerHTML = '<p class="text-center" style="color: #ff5f56;">Falha de conexão com a API do Google Drive.</p>';
             console.error(error);
         });
-    };
+    }
 });
