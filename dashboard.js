@@ -23,7 +23,7 @@ function handleCredentialResponse(response) {
             email: responsePayload.email
         }));
 
-        showDashboard(responsePayload.name);
+        showDashboard(responsePayload.name, responsePayload.email);
     } else {
         // Acesso Negado
         loginError.style.display = 'block';
@@ -36,12 +36,16 @@ function handleCredentialResponse(response) {
     }
 }
 
-function showDashboard(userName, instant = false) {
+function showDashboard(userName, userEmail = '', instant = false) {
     const loginOverlay = document.getElementById('login-overlay');
     const dashboardContent = document.getElementById('dashboard-content');
     const userNameSpan = document.getElementById('user-name');
 
-    userNameSpan.textContent = userName;
+    if (userEmail) {
+        userNameSpan.innerHTML = `${userName}<br><span style="font-size: 0.8rem; color: var(--color-primary); font-weight: 400;">${userEmail}</span>`;
+    } else {
+        userNameSpan.textContent = userName;
+    }
 
     if (instant) {
         loginOverlay.style.display = 'none';
@@ -71,6 +75,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const dashboardContent = document.getElementById('dashboard-content');
     const logoutBtn = document.getElementById('logout-btn');
 
+
+
+    // Previne que a página do dashboard role (scroll) enquanto o usuário navega na planilha
+    const sheetWidgetBody = document.getElementById('sheet-widget-body');
+    if (sheetWidgetBody) {
+        sheetWidgetBody.addEventListener('mouseenter', () => {
+            // Adiciona padding para evitar que o layout pule quando o scroll sumir
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+            document.body.style.overflow = 'hidden';
+        });
+        sheetWidgetBody.addEventListener('mouseleave', () => {
+            document.body.style.paddingRight = '';
+            document.body.style.overflow = '';
+        });
+    }
+
     // Inicializa o Google Sign-In independentemente de estar logado na sessão ou não
     // Isso evita o erro "Missing required parameter: client_id" ao deslogar e tentar relogar
     if (typeof google !== 'undefined') {
@@ -84,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const storedUser = localStorage.getItem('sincUser');
     if (storedUser) {
         const user = JSON.parse(storedUser);
-        showDashboard(user.name, true); // Use instant=true here
+        showDashboard(user.name, user.email, true); // Use instant=true here
     } else {
         if (typeof google !== 'undefined') {
             google.accounts.id.renderButton(
@@ -207,6 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('file-preview-iframe').src = '';
         }
     });
+
+
 
     // Função de busca e renderização (disponível globalmente para ser chamada recursivamente)
     function fetchDriveFiles(accessToken, targetFolderId, isBack = false) {

@@ -60,8 +60,8 @@
                     <span class="logo-text">SINC <span
                             style="color: var(--color-primary); font-weight: 300;">Workspace</span></span>
                 </div>
-                <div class="user-profile">
-                    <span id="user-name" style="margin-right: 15px; font-weight: 500;">Usuário SINC</span>
+                <div class="user-profile" style="display: flex; align-items: center;">
+                    <span id="user-name" style="margin-right: 15px; font-weight: 500; text-align: right; line-height: 1.2;">Usuário SINC</span>
                     <button id="logout-btn" class="btn-primary-outline"
                         style="padding: 0.4rem 1rem; font-size: 0.9rem;">Sair</button>
                 </div>
@@ -95,10 +95,14 @@
 
                 <!-- Widget: Banco de Horas (Google Sheets) -->
                 <div class="widget-card slide-up delay-1" style="flex: 2; min-width: 300px;">
-                    <div class="widget-header">
+                    <div class="widget-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <h3>Banco de Horas</h3>
+                        <a href="https://docs.google.com/spreadsheets/d/1cJxP2gAjh94WthoNOPVzWhQ-OESwCH7k67aDqnLtfS0/edit" target="_blank" class="btn-primary-outline" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            Abrir Planilha
+                        </a>
                     </div>
-                    <div class="widget-body" style="padding: 0;">
+                    <div class="widget-body" style="padding: 0;" id="sheet-widget-body">
                         <!-- Editable Iframe -->
                         <iframe
                             src="https://docs.google.com/spreadsheets/d/1cJxP2gAjh94WthoNOPVzWhQ-OESwCH7k67aDqnLtfS0/edit?widget=true&headers=false"
@@ -124,6 +128,12 @@
                     <div class="widget-body" style="padding: 1.5rem;">
                         <div id="drive-files-container" class="drive-files-list">
                             <p class="text-muted text-center" style="margin-top: 2rem; margin-bottom: 2rem;">Clique em "Sincronizar Drive" para carregar os arquivos da pasta da SINC.</p>
+                        </div>
+                        <div style="display: flex; justify-content: flex-end; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">
+                            <a href="https://drive.google.com/drive/folders/0B_pfgOzEMjWhWUh6ZFVLMnFlTDg" target="_blank" class="btn-primary-outline" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Abrir Drive
+                            </a>
                         </div>
                     </div>
                 </div>
