@@ -17,8 +17,8 @@ function handleCredentialResponse(response) {
     if (responsePayload.hd === 'sincjr.com.br' || responsePayload.email.endsWith('@sincjr.com.br')) {
         loginError.style.display = 'none';
         
-        // Salva na sessão para manter o login ao recarregar a página
-        sessionStorage.setItem('sincUser', JSON.stringify({
+        // Salva no localStorage para manter o login permanentemente (até que saia)
+        localStorage.setItem('sincUser', JSON.stringify({
             name: responsePayload.name,
             email: responsePayload.email
         }));
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logout-btn');
 
     // Verifica se já existe um usuário na sessão (Logado)
-    const storedUser = sessionStorage.getItem('sincUser');
+    const storedUser = localStorage.getItem('sincUser');
     if (storedUser) {
         const user = JSON.parse(storedUser);
         showDashboard(user.name);
@@ -80,8 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Botão de Sair (Logout)
     logoutBtn.addEventListener('click', () => {
-        sessionStorage.removeItem('sincUser');
+        localStorage.removeItem('sincUser');
+        localStorage.removeItem('sincDriveToken');
         google.accounts.id.disableAutoSelect();
+        
+        const authDriveBtn = document.getElementById('auth-drive-btn');
+        if (authDriveBtn) authDriveBtn.style.display = 'inline-block';
 
         dashboardContent.style.display = 'none';
         loginOverlay.style.display = 'flex';
@@ -121,6 +125,15 @@ document.addEventListener('DOMContentLoaded', () => {
             callback: (tokenResponse) => {
                 if (tokenResponse && tokenResponse.access_token) {
                     currentAccessToken = tokenResponse.access_token;
+                    
+                    // Salva o token no localStorage com tempo de expiração
+                    const expiresAt = Date.now() + (tokenResponse.expires_in * 1000);
+                    localStorage.setItem('sincDriveToken', JSON.stringify({
+                        token: currentAccessToken,
+                        expiresAt: expiresAt
+                    }));
+                    
+                    authDriveBtn.style.display = 'none'; // Esconde o botão após sincronizar
                     folderHistory = []; // Reseta o histórico
                     currentFolderId = rootFolderId;
                     window.fetchDriveFiles(currentAccessToken, rootFolderId);
@@ -128,8 +141,20 @@ document.addEventListener('DOMContentLoaded', () => {
             },
         });
 
+        // Verifica se já temos um token válido salvo
+        const storedTokenStr = localStorage.getItem('sincDriveToken');
+        if (storedTokenStr) {
+            const storedToken = JSON.parse(storedTokenStr);
+            // Verifica se o token ainda é válido (ainda não expirou)
+            if (storedToken.expiresAt > Date.now() + 60000) { // 1 minuto de margem
+                currentAccessToken = storedToken.token;
+                authDriveBtn.style.display = 'none'; // Já está sincronizado
+                window.fetchDriveFiles(currentAccessToken, rootFolderId);
+            }
+        }
+
         authDriveBtn.addEventListener('click', () => {
-            const storedUser = sessionStorage.getItem('sincUser');
+            const storedUser = localStorage.getItem('sincUser');
             let hint = '';
             if (storedUser) {
                 const user = JSON.parse(storedUser);
