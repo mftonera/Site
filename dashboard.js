@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Inicializa o Token Client
         const tokenClient = google.accounts.oauth2.initTokenClient({
             client_id: "269603322713-gp2fcbgpbi0ls37gj07lia99odn3l457.apps.googleusercontent.com",
-            scope: 'https://www.googleapis.com/auth/drive.readonly',
+            scope: 'https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/spreadsheets.readonly',
             callback: (tokenResponse) => {
                 if (tokenResponse && tokenResponse.access_token) {
                     currentAccessToken = tokenResponse.access_token;
@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     folderHistory = []; // Reseta o histórico
                     currentFolderId = rootFolderId;
                     fetchDriveFiles(currentAccessToken, rootFolderId);
+                    fetchUserHours(currentAccessToken);
                 }
             },
         });
@@ -166,6 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentAccessToken = storedToken.token;
                 authDriveBtn.style.display = 'none'; // Já está sincronizado
                 fetchDriveFiles(currentAccessToken, rootFolderId);
+                fetchUserHours(currentAccessToken);
             }
         }
 
@@ -207,6 +209,103 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('file-preview-iframe').src = '';
         }
     });
+
+    // Função de busca das Horas no Google Sheets
+    function fetchUserHours(accessToken) {
+        const container = document.getElementById('hours-container');
+        const status = document.getElementById('hours-status');
+        
+        // RECUPERA O NOME DO USUÁRIO LOGADO
+        const storedUser = localStorage.getItem('sincUser');
+        if (!storedUser) return;
+        const userName = JSON.parse(storedUser).name;
+
+        // ID real fornecido pelo usuário
+        const SPREADSHEET_ID = '1cJxP2gAjh94WthoNOPVzWhQ-OESwCH7k67aDqnLtfS0'; 
+        const SHEET_RANGE = 'A:F'; // Pega as colunas A até F da primeira aba (Geral)
+
+        fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_RANGE}`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                status.textContent = "Erro na Planilha";
+                container.innerHTML = `<p class="text-muted" style="color: #ff5f56; font-size:0.9rem;">Acesse o Google Cloud Console e ative a "Google Sheets API".</p>`;
+                return;
+            }
+
+            status.textContent = "Sincronizado";
+            const rows = data.values;
+            if (!rows || rows.length === 0) {
+                container.innerHTML = `<p class="text-muted">Nenhum dado encontrado na planilha.</p>`;
+                return;
+            }
+
+            // Procura o NOME do usuário na planilha (Coluna A = Nome, Coluna D = Horas, Coluna F = Meta %)
+            let userHours = "00:00:00";
+            let userPercentageStr = "0%";
+            let found = false;
+
+            for (let i = 0; i < rows.length; i++) {
+                const rowName = rows[i][0]; // Coluna A (Membro)
+                if (rowName) {
+                    // Limpa e formata para comparar ignorando maiúsculas/minúsculas e espaços extras
+                    const cleanRowName = rowName.toLowerCase().trim();
+                    const cleanUserName = userName.toLowerCase().trim();
+                    
+                    // Compara se os nomes batem ou se um contém o outro (ex: "Matheus Tonera" vs "Matheus F. Tonera")
+                    if (cleanRowName === cleanUserName || cleanUserName.includes(cleanRowName)) {
+                        userHours = rows[i][3] || "00:00:00"; // Coluna D (Horas)
+                        userPercentageStr = rows[i][5] || "0%"; // Coluna F (Meta %)
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!found) {
+                container.innerHTML = `
+                    <div style="font-size: 3rem; color: var(--color-text-muted); margin-bottom: 10px;">--</div>
+                    <p class="text-muted">Seu nome (${userName}) não foi localizado na planilha Geral.</p>
+                `;
+            } else {
+                // UI Premium para as Horas com Progresso Dinâmico
+                // Transforma "30,00%" em número 30
+                let percentageNum = parseFloat(userPercentageStr.replace('%', '').replace(',', '.'));
+                if (isNaN(percentageNum)) percentageNum = 0;
+                if (percentageNum > 100) percentageNum = 100;
+
+                // Calcula o offset do círculo SVG (Circunferência é 283)
+                const offset = 283 - (283 * (percentageNum / 100));
+                
+                // Formata as horas para exibir bonitinho (ex: 9:00:00 -> 9h)
+                let displayHours = userHours.split(':')[0] + 'h';
+                if (userHours.split(':')[1] !== "00") displayHours += userHours.split(':')[1] + 'm';
+
+                container.innerHTML = `
+                    <div style="position: relative; display: inline-block; margin-bottom: 1rem;">
+                        <svg width="150" height="150" viewBox="0 0 100 100" style="transform: rotate(-90deg);">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="8"></circle>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="var(--color-primary)" stroke-width="8" stroke-dasharray="283" stroke-dashoffset="${offset}" style="transition: stroke-dashoffset 1.5s ease-out;"></circle>
+                        </svg>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <span style="font-size: 1.8rem; font-weight: bold; color: var(--color-text);">${displayHours}</span>
+                            <span style="display: block; font-size: 0.75rem; color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px;">${userPercentageStr} da Meta</span>
+                        </div>
+                    </div>
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem;">Horas computadas</p>
+                `;
+            }
+        })
+        .catch(error => {
+            status.textContent = "Falha";
+            container.innerHTML = `<p class="text-center" style="color: #ff5f56;">Falha de conexão com o Google Sheets.</p>`;
+            console.error("Sheets Error:", error);
+        });
+    }
 
     // Função de busca e renderização (disponível globalmente para ser chamada recursivamente)
     function fetchDriveFiles(accessToken, targetFolderId, isBack = false) {
