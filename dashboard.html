@@ -104,26 +104,36 @@
                     </div>
                 </div>
 
-                <!-- Widget: Google Drive -->
+                <!-- Widget: Google Drive API -->
                 <div class="widget-card slide-up delay-2" style="grid-column: 1 / -1;">
                     <div class="widget-header">
-                        <h3>Arquivos SINC (Drive)</h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button id="drive-back-btn" class="btn-secondary" style="display: none; padding: 0.3rem 0.6rem; font-size: 0.8rem;">← Voltar</button>
+                            <h3>Arquivos Corporativos</h3>
+                        </div>
+                        <button id="auth-drive-btn" class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.9rem;">Sincronizar Drive</button>
                     </div>
-                    <div class="widget-body">
-                        <!-- Placeholder Iframe (Substituir pelo link de embed da pasta compartilhada real do Drive) -->
-                        <iframe
-                            src="https://drive.google.com/embeddedfolderview?id=1S0iYp_18oA_sO7uH5o0p3Zl9T_r6r1b_#list"
-                            style="border: 0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
-                        <!-- Nota: O ID de pasta acima é apenas um exemplo estrutural e provavelmente não carregará uma pasta real, substitua pelo ID correto do Drive da SINC -->
-                        <div
-                            style="padding: 10px; background: rgba(230,91,42,0.1); color: var(--color-primary); font-size: 0.9rem; text-align: center; border-radius: 4px; margin-top: 10px;">
-                            *Para visualizar os arquivos, você deve estar logado no Google Drive com sua conta SINC.
-                            Substitua o link de embed pelo ID da sua pasta compartilhada.
+                    <div class="widget-body" style="padding: 1.5rem;">
+                        <div id="drive-files-container" class="drive-files-list">
+                            <p class="text-muted text-center" style="margin-top: 2rem; margin-bottom: 2rem;">Clique em "Sincronizar Drive" para carregar os arquivos da pasta da SINC.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- File Preview Modal -->
+    <div id="file-preview-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 id="modal-file-title">Visualização</h3>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="file-preview-iframe" src="" frameborder="0" width="100%" height="100%" allow="autoplay"></iframe>
+            </div>
+        </div>
     </div>
 
     <script src="dashboard.js"></script>
