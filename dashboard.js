@@ -55,7 +55,7 @@ function showDashboard(userName) {
     }, 500);
 }
 
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const loginOverlay = document.getElementById('login-overlay');
     const dashboardContent = document.getElementById('dashboard-content');
     const logoutBtn = document.getElementById('logout-btn');
