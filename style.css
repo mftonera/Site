@@ -103,12 +103,12 @@ a {
 .btn-primary {
     background-color: var(--color-primary);
     color: #fff;
-    box-shadow: 0 4px 15px rgba(230, 91, 42, 0.3);
+    box-shadow: 0 4px 15px rgba(182, 37, 50, 0.3);
 }
 
 .btn-primary:hover {
     background-color: var(--color-primary-hover);
-    box-shadow: 0 6px 20px rgba(230, 91, 42, 0.5);
+    box-shadow: 0 6px 20px rgba(182, 37, 50, 0.5);
     transform: translateY(-2px);
 }
 
@@ -443,7 +443,7 @@ a {
 .service-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-color: rgba(230, 91, 42, 0.3);
+    border-color: rgba(182, 37, 50, 0.3);
 }
 
 .service-card:hover::before {
@@ -490,7 +490,7 @@ a {
 
 .member-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(230, 91, 42, 0.3);
+    border-color: rgba(182, 37, 50, 0.3);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
