@@ -470,13 +470,16 @@ a {
 }
 
 .members-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     padding: 1rem 0;
 }
 
 .member-card {
+    flex: 0 1 240px;
+    width: 100%;
     background: var(--color-surface);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
