@@ -4,13 +4,13 @@
     --color-surface: #141414;
     --color-surface-light: #1E1E1E;
 
-    --color-primary: #ef5929;
-    /* Brand Orange */
-    --color-primary-hover: #b62532;
-    --color-primary-light: rgba(239, 89, 41, 0.15);
+    --color-primary: #b62532;
+    /* Brand Red */
+    --color-primary-hover: #8c1b25;
+    --color-primary-light: rgba(182, 37, 50, 0.15);
 
     --color-gradient-1: #b62532;
-    --color-gradient-2: #ef5929;
+    --color-gradient-2: #8c1b25;
     --gradient-brand: linear-gradient(135deg, var(--color-gradient-1), var(--color-gradient-2));
 
 
@@ -234,7 +234,7 @@ a {
     position: absolute;
     inset: 0;
     background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.4) 100%),
-        radial-gradient(circle at 70% 30%, rgba(239, 89, 41, 0.3) 0%, transparent 50%);
+        radial-gradient(circle at 70% 30%, rgba(182, 37, 50, 0.3) 0%, transparent 50%);
     z-index: 1;
 }
 
