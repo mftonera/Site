@@ -107,7 +107,7 @@
                     <div class="divider"></div>
                     <!-- Linha divisória para efeito estético -->
                 </div>
-                <div class="about-grid">
+                <div class="about-grid" style="grid-template-columns: 1fr; max-width: 800px;">
                     <!-- Grade de layout para dividir o conteúdo sobre a empresa em colunas -->
                     <div class="about-text slide-up">
                         <!-- Coluna de texto com animação de deslizar para cima -->
@@ -127,35 +127,6 @@
                             <li>Design Premium</li>
                             <!-- Itens da lista -->
                         </ul>
-                    </div>
-                    <div class="about-image slide-up delay-1">
-                        <!-- Coluna para a imagem/mockup com animação -->
-                        <div class="glass-card mockup-card">
-                            <!-- Cartão com efeito visual "glassmorphism" simulando a interface de um sistema -->
-                            <div class="mockup-header">
-                                <!-- Cabeçalho do mockup, parecendo a barra superior de uma janela do macOS -->
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                                <!-- Bolinhas decorativas simulando os botões de fechar, minimizar e maximizar -->
-                            </div>
-                            <div class="mockup-body">
-                                <!-- Corpo do mockup simulando uma dashboard -->
-                                <h4>Dashboard SINC</h4>
-                                <!-- Título dentro do mockup -->
-                                <div class="mockup-line"></div>
-                                <!-- Linha gráfica representando um elemento da interface -->
-                                <div class="mockup-line short"></div>
-                                <!-- Outra linha, mais curta -->
-                                <div class="mockup-stats">
-                                    <!-- Container para estatísticas/gráficos do mockup -->
-                                    <div class="stat-box"></div>
-                                    <!-- Caixa representando um dado estatístico -->
-                                    <div class="stat-box highlight"></div>
-                                    <!-- Caixa destacada representando outro dado -->
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -222,9 +193,11 @@
                 <div class="members-grid">
                     <!-- Member Card 1 -->
                     <div class="member-card slide-up">
-                        <div class="member-photo-container">
-                            <img src="assets/matheus.png" alt="Matheus Tonera" class="member-img">
-                        </div>
+                        <a href="membro-matheus.html" class="member-photo-link">
+                            <div class="member-photo-container">
+                                <img src="assets/matheus.png" alt="Matheus Tonera" class="member-img">
+                            </div>
+                        </a>
 
                         <div class="member-info">
                             <h3>Matheus Tonera</h3>
@@ -237,9 +210,11 @@
 
                     <!-- Member Card 2 -->
                     <div class="member-card slide-up delay-1">
-                        <div class="member-photo-container">
-                            <img src="assets/mariaeduarda.png" alt="Maria Eduarda" class="member-img">
-                        </div>
+                        <a href="membro-maria.html" class="member-photo-link">
+                            <div class="member-photo-container">
+                                <img src="assets/mariaeduarda.png" alt="Maria Eduarda" class="member-img">
+                            </div>
+                        </a>
 
                         <div class="member-info">
                             <h3>Maria Eduarda</h3>
@@ -252,11 +227,11 @@
 
                     <!-- Member Card 3 -->
                     <div class="member-card slide-up delay-2">
-                        <div class="member-photo-container">
-                            <div class="member-photo-placeholder">
-                                <span>FT</span>
+                        <a href="membro-lucaszilio.html" class="member-photo-link">
+                            <div class="member-photo-container">
+                                <img src="assets/lucaszilio.png" alt="Lucas Zilio" class="member-img">
                             </div>
-                        </div>
+                        </a>
                         <div class="member-info">
                             <h3>Lucas Zilio</h3>
                             <p class="member-role">Projetos</p>
@@ -268,11 +243,11 @@
 
                     <!-- Member Card 4 -->
                     <div class="member-card slide-up delay-3">
-                        <div class="member-photo-container">
-                            <div class="member-photo-placeholder">
-                                <span>FT</span>
+                        <a href="membro-lucasweiss.html" class="member-photo-link">
+                            <div class="member-photo-container">
+                                <img src="assets/lucasweiss.png" alt="Lucas Weiss" class="member-img">
                             </div>
-                        </div>
+                        </a>
                         <div class="member-info">
                             <h3>Lucas Weiss</h3>
                             <p class="member-role">ADM/FIN</p>
@@ -284,11 +259,11 @@
 
                     <!-- Member Card 5 -->
                     <div class="member-card slide-up">
-                        <div class="member-photo-container">
-                            <div class="member-photo-placeholder">
-                                <span>FT</span>
+                        <a href="membro-bruno.html" class="member-photo-link">
+                            <div class="member-photo-container">
+                                <img src="assets/brunobarcelos.png" alt="Bruno Barcelos" class="member-img">
                             </div>
-                        </div>
+                        </a>
                         <div class="member-info">
                             <h3>Bruno Barcelos</h3>
                             <p class="member-role">Comercial</p>
@@ -303,11 +278,13 @@
                 <div class="members-grid" style="margin-top: 2rem;">
                     <!-- Member Card 6 -->
                     <div class="member-card slide-up delay-1">
-                        <div class="member-photo-container">
-                            <div class="member-photo-placeholder">
-                                <span>FT</span>
+                        <a href="membro-gustavo.html" class="member-photo-link">
+                            <div class="member-photo-container">
+                                <div class="member-photo-placeholder">
+                                    <span>FT</span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                         <div class="member-info">
                             <h3>Gustavo Campos</h3>
                             <p class="member-role">Comercial</p>
@@ -319,11 +296,11 @@
 
                     <!-- Member Card 7 -->
                     <div class="member-card slide-up delay-2">
-                        <div class="member-photo-container">
-                            <div class="member-photo-placeholder">
-                                <span>FT</span>
+                        <a href="membro-vinicius.html" class="member-photo-link">
+                            <div class="member-photo-container">
+                                <img src="assets/viniciuswesner.png" alt="Vinícius Wesner" class="member-img">
                             </div>
-                        </div>
+                        </a>
                         <div class="member-info">
                             <h3>Vinícius Wesner</h3>
                             <p class="member-role">Comercial</p>
@@ -335,11 +312,13 @@
 
                     <!-- Member Card 8 -->
                     <div class="member-card slide-up delay-3">
-                        <div class="member-photo-container">
-                            <div class="member-photo-placeholder">
-                                <span>FT</span>
+                        <a href="membro-pedro.html" class="member-photo-link">
+                            <div class="member-photo-container">
+                                <div class="member-photo-placeholder">
+                                    <span>FT</span>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                         <div class="member-info">
                             <h3>Pedro Foletto</h3>
                             <p class="member-role">Marketing</p>

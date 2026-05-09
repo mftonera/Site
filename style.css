@@ -494,6 +494,22 @@ a {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+.member-photo-link {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.member-photo-link .member-photo-container {
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.member-photo-link:hover .member-photo-container {
+    transform: scale(1.08);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 20px var(--color-primary-light);
+}
+
 .member-photo-container {
     width: 140px;
     height: 140px;
