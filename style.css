@@ -622,6 +622,10 @@ a {
     transition: border-color var(--transition-fast);
 }
 
+.form-group textarea {
+    resize: none;
+}
+
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
