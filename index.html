@@ -9,7 +9,7 @@
     <!-- Define a codificação de caracteres como UTF-8, que suporta a maioria dos caracteres e símbolos -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Configura a viewport para tornar o site responsivo (ajustável a diferentes tamanhos de tela) -->
-    <title>SINC - Empresa Junior</title>
+    <title>SincJr - Elétrica & Automação</title>
     <!-- Define o título da página que aparece na aba do navegador -->
     <meta name="description"
         content="SINC: Inovação e Gestão Corporativa. Oferecemos soluções para o sucesso da sua empresa.">
@@ -54,6 +54,8 @@
                 <!-- Link para a seção Sobre -->
                 <a href="#services">Serviços</a>
                 <!-- Link para a seção Serviços -->
+                <a href="#cases">Casos</a>
+                <!-- Link para a seção Casos -->
                 <a href="#members">Membros</a>
                 <!-- Link para a seção Membros -->
                 <a href="#contact" class="btn-primary-outline">Contato</a>
@@ -81,17 +83,23 @@
             <!-- Camada de sobreposição (geralmente escura) para melhorar a leitura do texto sobre a imagem de fundo -->
             <div class="hero-content">
                 <!-- Container para o conteúdo textual do destaque -->
-                <h1 class="fade-in">O Futuro da Gestão <span>Empresarial</span></h1>
+                <p class="fade-in"
+                    style="color: var(--color-primary); font-weight: 600; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 1rem;">
+                    EMPRESA JÚNIOR &bull; UFRGS &bull; DESDE 2016</p>
+                <h1 class="fade-in" style="font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 1.2;">Engenharia que
+                    <span style="color: var(--color-primary);">automatiza</span> o seu chão de fábrica
+                </h1>
                 <!-- Título principal da página com animação de fade in -->
-                <p class="fade-in delay-1">Soluções tecnológicas e estratégicas para impulsionar o seu negócio
-                    no mercado competitivo.</p>
+                <p class="fade-in delay-1" style="font-size: 1.1rem; max-width: 700px;">Projetos de automação
+                    industrial, instalações elétricas, eletrônica e eficiência energética - entregues por estudantes da
+                    UFRGS.</p>
                 <!-- Subtítulo ou descrição com pequeno atraso na animação -->
                 <div class="hero-buttons fade-in delay-2">
                     <!-- Container para os botões de ação na área hero -->
-                    <a href="#services" class="btn-primary">Nossos Serviços</a>
-                    <!-- Botão de ação principal redirecionando para a seção de Serviços -->
-                    <a href="#about" class="btn-secondary">Conheça a SINC</a>
-                    <!-- Botão secundário redirecionando para a seção Sobre -->
+                    <a href="#contact" class="btn-primary">Fale com a Sinc</a>
+                    <!-- Botão de ação principal redirecionando para a seção de Contato -->
+                    <a href="#services" class="btn-secondary">Nossos serviços</a>
+                    <!-- Botão secundário redirecionando para a seção Serviços -->
                 </div>
             </div>
         </section>
@@ -111,20 +119,21 @@
                     <!-- Grade de layout para dividir o conteúdo sobre a empresa em colunas -->
                     <div class="about-text slide-up">
                         <!-- Coluna de texto com animação de deslizar para cima -->
-                        <h3>Inovação em cada processo</h3>
+                        <h3>Engenharia real, entregue por estudantes</h3>
                         <!-- Título do bloco de texto -->
-                        <p>A SINC nasceu com o propósito de redefinir a gestão corporativa. Combinamos tecnologias com
-                            design centrado no usuário para oferecer plataformas que conectam equipes,
-                            simplificam tarefas e escalam resultados.</p>
+                        <p>A Sinc Jr é a empresa júnior dos cursos de Engenharia Elétrica e Engeharia de Controle e
+                            Automação da UFRGS. Atuamos com suporte técnico de professores e laboratórios da
+                            universidade para entregar projetos de alta qualidade e clientes reais.</p>
                         <!-- Parágrafo introdutório -->
-                        <p>Nossa equipe trabalha para construir um ecossistema digital onde a sua empresa pode prosperar
-                            sem limites.</p>
+                        <p>Nossa visão é séria e industrial, mas moderna e tecnológica - do chão de fábrica ao painel de
+                            controle</p>
                         <!-- Segundo parágrafo detalhando o propósito da equipe -->
                         <ul class="features-list">
                             <!-- Lista de características/vantagens -->
-                            <li>Gestão Eficiente</li>
-                            <li>Tecnologia Escalável</li>
-                            <li>Design Premium</li>
+                            <li>Automação industrial e CLPs</li>
+                            <li>Instalações elétricas (NR-compliant)</li>
+                            <li>Eficiência energética</li>
+                            <li>Eletrônica e software embarcado</li>
                             <!-- Itens da lista -->
                         </ul>
                     </div>
@@ -145,37 +154,184 @@
                     <p class="section-subtitle">Soluções completas para transformar o seu negócio</p>
                     <!-- Subtítulo explicativo dos serviços -->
                 </div>
-                <div class="services-grid">
-                    <!-- Grade para organizar os cards de serviço lado a lado -->
-                    <div class="service-card slide-up">
-                        <!-- Primeiro cartão de serviço, com animação -->
-                        <div class="service-icon">✦</div>
-                        <!-- Ícone do serviço -->
-                        <h3>Consultoria Estratégica</h3>
-                        <!-- Título do serviço -->
-                        <p>Análise profunda do seu negócio para identificar oportunidades de crescimento e otimização de
-                            recursos.</p>
-                        <!-- Descrição detalhada do serviço -->
+                <div style="margin-bottom: 4rem; margin-top: 3rem;">
+                    <h3
+                        style="color: var(--color-primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.5rem; text-align: left;">
+                        Inteligência Artificial</h3>
+                    <div class="services-grid">
+                        <div class="service-card slide-up" style="text-align: left; padding: 2.5rem 2rem;">
+                            <div class="service-icon" style="margin-bottom: 1rem;"><svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor"
+                                    style="width: 28px; height: 28px; color: var(--color-primary);">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                </svg></div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Controle de Qualidade por Visão
+                                Computacional</h3>
+                            <p style="font-size: 0.95rem;">Sistemas de inspeção automatizada que identificam defeitos e
+                                não conformidades em tempo real diretamente na linha de produção.</p>
+                        </div>
+                        <div class="service-card slide-up delay-1" style="text-align: left; padding: 2.5rem 2rem;">
+                            <div class="service-icon" style="margin-bottom: 1rem;"><svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor"
+                                    style="width: 28px; height: 28px; color: var(--color-primary);">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                </svg></div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Reconhecimento Facial e Análise
+                                Comportamental</h3>
+                            <p style="font-size: 0.95rem;">Detecção e análise de comportamento de clientes com foco em
+                                segurança antifurto — alertas em tempo real para ambientes comerciais e industriais.</p>
+                        </div>
+                        <div class="service-card slide-up delay-2" style="text-align: left; padding: 2.5rem 2rem;">
+                            <div class="service-icon" style="margin-bottom: 1rem;"><svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor"
+                                    style="width: 28px; height: 28px; color: var(--color-primary);">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                                </svg></div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Estimativas Preditivas</h3>
+                            <p style="font-size: 0.95rem;">Modelos de predição que estimam eventos futuros com base em
+                                padrões históricos — redução de falhas, planejamento de demanda e manutenção preditiva.
+                            </p>
+                        </div>
                     </div>
-                    <div class="service-card slide-up delay-1">
-                        <!-- Segundo cartão de serviço -->
-                        <div class="service-icon">✧</div>
-                        <!-- Ícone -->
-                        <h3>Desenvolvimento de Software</h3>
-                        <!-- Título -->
-                        <p>Sistemas sob medida, rápidos e escaláveis, desenvolvidos com as tecnologias mais recentes do
-                            mercado.</p>
-                        <!-- Descrição -->
+                </div>
+
+                <div>
+                    <h3
+                        style="color: var(--color-primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.5rem; text-align: left;">
+                        Engenharia e Automação</h3>
+                    <div class="services-grid">
+                        <div class="service-card slide-up" style="text-align: left; padding: 2.5rem 2rem;">
+                            <div class="service-icon" style="margin-bottom: 1rem;"><svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor"
+                                    style="width: 28px; height: 28px; color: var(--color-primary);">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                                </svg></div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Automação Industrial</h3>
+                            <p style="font-size: 0.95rem;">Projetos e programação de CLPs, painéis de controle e
+                                sistemas supervisórios (SCADA/IHM) para o seu chão de fábrica.</p>
+                        </div>
+                        <div class="service-card slide-up delay-1" style="text-align: left; padding: 2.5rem 2rem;">
+                            <div class="service-icon" style="margin-bottom: 1rem;"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" style="color: var(--color-primary);">
+                                    <path d="M12 22v-5" />
+                                    <path d="M9 8V2" />
+                                    <path d="M15 8V2" />
+                                    <path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z" />
+                                </svg></div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Instalações Elétricas</h3>
+                            <p style="font-size: 0.95rem;">Dimensionamento e execução de instalações elétricas
+                                industriais e prediais conforme normas NR-10 e ABNT.</p>
+                        </div>
+                        <div class="service-card slide-up delay-2" style="text-align: left; padding: 2.5rem 2rem;">
+                            <div class="service-icon" style="margin-bottom: 1rem;"><svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor"
+                                    style="width: 28px; height: 28px; color: var(--color-primary);">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                                </svg></div>
+                            <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">Energia e Eficiência</h3>
+                            <p style="font-size: 0.95rem;">Projetos fotovoltaicos, laudos de eficiência energética e
+                                estudos de redução de consumo com ROI documentado.</p>
+                        </div>
                     </div>
-                    <div class="service-card slide-up delay-2">
-                        <!-- Terceiro cartão de serviço -->
-                        <div class="service-icon">⟡</div>
-                        <!-- Ícone -->
-                        <h3>Gestão de Equipes</h3>
-                        <!-- Título -->
-                        <p>Ferramentas exclusivas para gerenciamento de diretórios, calendários e tarefas da sua
-                            corporação.</p>
-                        <!-- Descrição -->
+                </div>
+            </div>
+        </section>
+
+        <section id="cases" class="cases-section section-padding">
+            <div class="container">
+                <div class="section-title">
+                    <h2 style="text-align: left; margin-bottom: 2rem;">Projetos reais. Indústrias reais.</h2>
+                    <div class="divider" style="margin-left: 0;"></div>
+                </div>
+
+                <div class="case-card slide-up"
+                    style="background: linear-gradient(135deg, #1A1A1A 0%, #111111 100%); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); padding: 3rem; position: relative; overflow: hidden; margin-top: 3rem;">
+                    <!-- Logo decoration -->
+                    <div
+                        style="position: absolute; top: -50px; right: -50px; width: 400px; height: 400px; opacity: 0.05; pointer-events: none;">
+                        <img src="assets/icone.png" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <div style="position: relative; z-index: 2;">
+                        <p
+                            style="color: var(--color-text-muted); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem;">
+                            CASE / FUELTECH &bull; 2025</p>
+                        <h3 style="font-size: 2rem; margin-bottom: 1rem; max-width: 650px; line-height: 1.3;">IA para
+                            controle de qualidade e validação de montagem na linha de produção.</h3>
+                        <p style="color: #e54d3c; font-size: 0.85rem; font-weight: 600; margin-bottom: 2rem;">100+ horas
+                            de desenvolvimento &bull; 10 semanas &bull; Garantia 9 meses</p>
+
+                        <div
+                            style="background: rgba(229, 77, 60, 0.05); border: 1px solid rgba(229, 77, 60, 0.15); padding: 0.5rem 1rem; border-radius: 8px; display: inline-block; margin-bottom: 2.5rem; width: 100%;">
+                            <span
+                                style="color: #e54d3c; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">INTELIGÊNCIA
+                                ARTIFICIAL</span>
+                        </div>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                            <div>
+                                <h4
+                                    style="color: #e54d3c; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
+                                    O Desafio</h4>
+                                <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6;">A
+                                    FuelTech realizava o controle de qualidade com uma balança convencional — o peso
+                                    estimado determinava se todos os itens estavam presentes na embalagem. A empresa
+                                    buscava uma solução mais moderna, versátil e inteligente para sua linha de produção.
+                                </p>
+                            </div>
+                            <div>
+                                <h4
+                                    style="color: #e54d3c; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
+                                    A Solução</h4>
+                                <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6;">
+                                    Implementamos um sistema de IA treinado para reconhecimento visual dos itens
+                                    específicos que passam pela linha e para verificar se a sequência correta de
+                                    montagem foi seguida em cada etapa do processo.</p>
+                            </div>
+                            <div>
+                                <h4
+                                    style="color: #e54d3c; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
+                                    Os Resultados</h4>
+                                <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6;">Entrega
+                                    de software customizado com IA treinada para reconhecimento de produtos e validação
+                                    de etapas de montagem, com consultoria completa e garantia de 9 meses pós-entrega.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4
+                                style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
+                                Metodologia</h4>
+                            <ul
+                                style="list-style: none; padding: 0; margin: 0; color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">
+                                <li><strong style="color: var(--color-text);">1. Análise e planejamento</strong> —
+                                    Estudo do material prévio e mapeamento do processo da FuelTech.</li>
+                                <li><strong style="color: var(--color-text);">2. Refinamento da IA</strong> — Melhoria
+                                    no desempenho do reconhecimento visual dos itens.</li>
+                                <li><strong style="color: var(--color-text);">3. Controle de etapas</strong> —
+                                    Desenvolvimento do método de checagem da sequência de montagem.</li>
+                                <li><strong style="color: var(--color-text);">4. Testes e validação</strong> — Ciclos
+                                    rigorosos de testes práticos para garantir precisão.</li>
+                                <li><strong style="color: var(--color-text);">5. Polimento e entrega</strong> — Ajustes
+                                    finais e entrega com suporte da equipe UFRGS.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -356,7 +512,7 @@
                         </div>
                     </div>
                     <form class="contact-form slide-up delay-1" id="contactForm"
-                        action="https://formsubmit.co/marketing@sincjr.com.br" method="POST">
+                        action="https://formsubmit.co/contato@sincjr.com.br" method="POST">
                         <!-- Coluna contendo o formulário de contato -->
                         <div class="form-group">
                             <!-- Grupo para o campo de Nome -->
@@ -392,23 +548,34 @@
     <footer>
         <!-- Rodapé do site -->
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-content"
+                style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2.5rem;">
                 <!-- Conteúdo superior do rodapé, geralmente links e logo -->
-                <div class="footer-brand">
+                <div class="footer-brand"
+                    style="display: flex; flex-direction: column; align-items: center; max-width: 100%;">
                     <!-- Branding no rodapé (Logotipo textual e descrição) -->
-                    <span class="logo-text">SINC</span>
-                    <p>Excelência em soluções corporativas.</p>
+                    <div
+                        style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <img src="assets/icone.png" alt="SINC Logo" style="width: 24px; height: auto;">
+                        <span class="logo-text"
+                            style="text-transform: lowercase; font-size: 1.6rem; letter-spacing: -1px; margin: 0;">sinc</span>
+                    </div>
+                    <p style="color: #a0a0a0; font-size: 0.95rem;">Empresa Júnior de Eng. Elétrica e de Controle e
+                        Automação — UFRGS.</p>
                 </div>
-                <div class="footer-links">
+                <div class="footer-links" style="display: flex; gap: 2.5rem; justify-content: center; width: 100%;">
                     <!-- Links rápidos de navegação repetidos no rodapé -->
                     <a href="#home">Início</a>
                     <a href="#about">Sobre</a>
                     <a href="#services">Serviços</a>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom"
+                style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
                 <!-- Seção mais inferior do rodapé, contendo direitos autorais -->
-                <p>&copy; 2026 SINCJR. Todos os direitos reservados.</p>
+                <p
+                    style="font-family: monospace; font-size: 0.85rem; color: #666; letter-spacing: 1px; text-transform: uppercase;">
+                    &copy; 2026 SINCJR. Todos os direitos reservados.</p>
                 <!-- Texto de copyright da empresa -->
             </div>
         </div>
