@@ -327,14 +327,11 @@ a {
     position: relative;
     overflow: hidden;
     text-decoration: none;
-    transition: all var(--transition-normal);
     display: block;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .hero-case-card:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
 }
 
 .hero-case-card .case-decoration {
