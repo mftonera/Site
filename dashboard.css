@@ -3,14 +3,14 @@
     min-height: 100vh;
     background-color: var(--color-bg);
     background-image: 
-        radial-gradient(circle at 30% 70%, rgba(182, 37, 50, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 70% 30%, rgba(182, 37, 50, 0.2) 0%, transparent 50%);
+        radial-gradient(circle at 30% 70%, rgba(var(--color-primary-rgb), 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(var(--color-primary-rgb), 0.2) 0%, transparent 50%);
 }
 
 .dash-header {
-    background: rgba(10, 10, 10, 0.85);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--nav-border);
 }
 
 .dashboard-grid {
@@ -22,18 +22,18 @@
 .widget-card {
     background-color: var(--color-surface);
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
     overflow: hidden;
     transition: transform var(--transition-normal);
 }
 
 .widget-card:hover {
-    border-color: rgba(182, 37, 50, 0.3);
+    border-color: rgba(var(--color-primary-rgb), 0.3);
 }
 
 .widget-header {
     padding: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--nav-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -60,8 +60,8 @@
     justify-content: center;
     background-color: var(--color-bg);
     background-image: 
-        radial-gradient(circle at 30% 70%, rgba(182, 37, 50, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 70% 30%, rgba(182, 37, 50, 0.2) 0%, transparent 50%);
+        radial-gradient(circle at 30% 70%, rgba(var(--color-primary-rgb), 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(var(--color-primary-rgb), 0.2) 0%, transparent 50%);
     padding: 2rem;
 }
 
@@ -93,16 +93,16 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--color-surface-light);
+    border: 1px solid var(--card-border);
     border-radius: 8px;
     text-decoration: none;
     transition: all var(--transition-fast);
 }
 
 .drive-file-item:hover {
-    background: rgba(182, 37, 50, 0.05);
-    border-color: rgba(182, 37, 50, 0.3);
+    background: rgba(var(--color-primary-rgb), 0.05);
+    border-color: rgba(var(--color-primary-rgb), 0.3);
     transform: translateX(5px);
 }
 
@@ -151,7 +151,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .modal-header h3 {

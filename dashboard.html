@@ -20,6 +20,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
 </head>
 
 <body>
@@ -60,8 +65,13 @@
                     <span class="logo-text">SINC <span
                             style="color: var(--color-primary); font-weight: 300;">Dashboard</span></span>
                 </div>
-                <div class="user-profile" style="display: flex; align-items: center; gap: 1rem;">
-                    <a href="index.html" class="btn-primary-outline" style="padding: 0.4rem 1rem; font-size: 0.9rem; text-decoration: none; border-color: rgba(255,255,255,0.2); color: var(--color-text);">← Voltar ao Site</a>
+                                <div class="user-profile" style="display: flex; align-items: center; gap: 1rem;">
+                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar tema" style="margin:0;">
+                        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <a href="index.html" class="btn-primary-outline" style="padding: 0.4rem 1rem; font-size: 0.9rem; text-decoration: none; border-color: var(--input-border); color: var(--color-text);">← Voltar ao Site</a>
                     <span id="user-name"
                         style="font-weight: 500; text-align: right; line-height: 1.2;">Usuário
                         SINC</span>
@@ -144,7 +154,7 @@
                                 "Sincronizar Drive" para carregar os arquivos da pasta da SINC.</p>
                         </div>
                         <div
-                            style="display: flex; justify-content: flex-end; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05);">
+                            style="display: flex; justify-content: flex-end; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--footer-border);">
                             <a href="https://drive.google.com/drive/folders/0B_pfgOzEMjWhWUh6ZFVLMnFlTDg"
                                 target="_blank" class="btn-primary-outline"
                                 style="padding: 0.3rem 0.8rem; font-size: 0.8rem; text-decoration: none; display: flex; align-items: center; gap: 5px;">

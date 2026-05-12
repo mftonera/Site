@@ -30,6 +30,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
 </head>
 
 <body>
@@ -61,6 +66,11 @@
                 <a href="#contact" class="btn-primary-outline">Contato</a>
 
                 <!-- Link para a seção de Contato com estilo de botão delineado -->
+                                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar tema">
+                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
                 <a href="dashboard.html" class="btn-primary" style="margin-left: 10px;">Entrar</a>
                 <!-- Link para a nova página de Login/Dashboard -->
             </nav>
@@ -255,14 +265,14 @@
             <div class="container">
                 <div class="section-title" style="text-align: left;">
                     <span
-                        style="color: #e54d3c; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; display: block;">Estudos
+                        style="color: var(--color-primary); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; display: block;">Estudos
                         de Caso</span>
                     <h2 style="margin-bottom: 2rem; text-align: left;">Projetos reais. Indústrias reais.</h2>
                     <div class="divider" style="margin-left: 0;"></div>
                 </div>
 
                 <div class="case-card slide-up"
-                    style="background: linear-gradient(135deg, #1A1A1A 0%, #111111 100%); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); padding: 3rem; position: relative; overflow: hidden; margin-top: 3rem;">
+                    style="background: var(--case-card-bg); border-radius: 12px; border: 1px solid var(--card-border); padding: 3rem; position: relative; overflow: hidden; margin-top: 3rem;">
                     <!-- Logo decoration -->
                     <div
                         style="position: absolute; top: -50px; right: -50px; width: 400px; height: 400px; opacity: 0.05; pointer-events: none;">
@@ -275,13 +285,13 @@
                             CASE / FUELTECH &bull; 2025</p>
                         <h3 style="font-size: 2rem; margin-bottom: 1rem; max-width: 650px; line-height: 1.3;">IA para
                             controle de qualidade e validação de montagem na linha de produção.</h3>
-                        <p style="color: #e54d3c; font-size: 0.85rem; font-weight: 600; margin-bottom: 2rem;">100+ horas
+                        <p style="color: var(--color-primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 2rem;">100+ horas
                             de desenvolvimento &bull; 10 semanas &bull; Garantia 9 meses</p>
 
                         <div
-                            style="background: rgba(229, 77, 60, 0.05); border: 1px solid rgba(229, 77, 60, 0.15); padding: 0.5rem 1rem; border-radius: 8px; display: inline-block; margin-bottom: 2.5rem; width: 100%;">
+                            style="background: rgba(var(--color-primary-rgb), 0.05); border: 1px solid rgba(var(--color-primary-rgb), 0.15); padding: 0.5rem 1rem; border-radius: 8px; display: inline-block; margin-bottom: 2.5rem; width: 100%;">
                             <span
-                                style="color: #e54d3c; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">INTELIGÊNCIA
+                                style="color: var(--color-primary); font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">INTELIGÊNCIA
                                 ARTIFICIAL</span>
                         </div>
 
@@ -289,7 +299,7 @@
                             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
                             <div>
                                 <h4
-                                    style="color: #e54d3c; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
+                                    style="color: var(--color-primary); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
                                     O Desafio</h4>
                                 <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6;">A
                                     FuelTech realizava o controle de qualidade com uma balança convencional - o peso
@@ -299,7 +309,7 @@
                             </div>
                             <div>
                                 <h4
-                                    style="color: #e54d3c; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
+                                    style="color: var(--color-primary); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
                                     A Solução</h4>
                                 <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6;">
                                     Implementamos um sistema de IA treinado para reconhecimento visual dos itens
@@ -308,7 +318,7 @@
                             </div>
                             <div>
                                 <h4
-                                    style="color: #e54d3c; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
+                                    style="color: var(--color-primary); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; text-transform: uppercase;">
                                     Os Resultados</h4>
                                 <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.6;">Entrega
                                     de software customizado com IA treinada para reconhecimento de produtos e validação
@@ -574,7 +584,7 @@
                 </div>
             </div>
             <div class="footer-bottom"
-                style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--footer-border); text-align: center;">
                 <!-- Seção mais inferior do rodapé, contendo direitos autorais -->
                 <p
                     style="font-family: monospace; font-size: 0.85rem; color: #666; letter-spacing: 1px; text-transform: uppercase;">
