@@ -22,11 +22,16 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
 </head>
-<body class="dark-theme">
-    <header style="padding: 2rem; display: flex; align-items: center; justify-content: center; background: rgba(10, 10, 10, 0.5); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-        <img src="assets/icone.png" alt="SINC Icon" style="height: 35px; margin-right: 12px;">
-        <span style="font-size: 1.5rem; font-weight: 800; letter-spacing: 1px;">SINC</span>
+<body>
+        <header style="padding: 2rem; display: flex; align-items: center; justify-content: center; background: var(--gradient-brand); color: white; border-bottom: 1px solid var(--nav-border);">
+        <img src="assets/icone.png" alt="SINC Icon" style="height: 35px; margin-right: 12px; filter: brightness(0) invert(1);">
+        <span style="font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; color: white;">SINC</span>
     </header>
     <main class="container" style="padding: 4rem 2rem; min-height: 80vh;">
         <a href="index.html#members" class="back-btn">
